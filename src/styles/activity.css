@@ -1,0 +1,34 @@
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.activity-icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.activity-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-text {
+  font-weight: 500;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: gray;
+}

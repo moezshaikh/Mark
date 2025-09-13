@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap');
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--accent), rgb(8, 24, 51));
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  color: white;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-family: 'Montserrat', sans-serif; /* modern bold font */
+  font-size: 8.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+
+  /* Eye-catching gradient text: bright blue to deep black */
+  background: linear-gradient(135deg, #000000, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  cursor: pointer;
+  width: 60px;   /* fixed circle size */
+  height: 60px;
+  border-radius: 50%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.hero-arrow {
+  background: black;       /* black circular bg */
+  transform: scale(1.1);   /* small zoom on hover */
+  align-items: center;
+}
+
+.hero-arrow svg {
+  color: white;            /* arrow turns white */
+  transition: color 0.3s ease;
+}
+
+.hero-arrow:hover svg {
+  color: white;            /* ensure contrast */
+}
+
+
+
+
+.hero-button {
+  padding: 10px 20px;
+  margin-top: 100px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, #000000ff, black);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Tablet Styles - 768px to 1024px */
+        @media screen and (max-width: 1024px) {
+            .hero-title {
+                font-size: 6rem;
+            }
+            
+            .hero-overlay {
+                max-width: 500px;
+                padding: 15px;
+            }
+            
+            .hero-button {
+                font-size: 1.1rem;
+                margin-top: 80px;
+            }
+        }
+
+        /* Small Tablet/Large Mobile - 481px to 768px */
+        @media screen and (max-width: 768px) {
+            .hero-container {
+                height: 100vh;
+                padding: 0 15px;
+            }
+            
+            .hero-title {
+                font-size: 4.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-overlay {
+                max-width: 450px;
+                padding: 10px;
+            }
+            
+            .hero-arrow {
+                width: 50px;
+                height: 50px;
+                margin: 1.5rem auto 0;
+            }
+            
+            .hero-arrow svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .hero-button {
+                font-size: 1rem;
+                padding: 12px 24px;
+                margin-top: 60px;
+            }
+        }
+
+        /* Mobile Phones - up to 480px */
+        @media screen and (max-width: 480px) {
+            .hero-container {
+                padding: 0 10px;
+                min-height: 100vh;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+            
+            .hero-overlay {
+                max-width: 100%;
+                padding: 5px;
+            }
+            
+            .hero-arrow {
+                width: 45px;
+                height: 45px;
+                margin: 1rem auto 0;
+            }
+            
+            .hero-arrow svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .hero-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+                margin-top: 40px;
+                border-radius: 15px;
+            }
+        }
+
+        /* Extra Small Mobile - up to 320px */
+        @media screen and (max-width: 320px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-button {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+                margin-top: 30px;
+            }
+          }
