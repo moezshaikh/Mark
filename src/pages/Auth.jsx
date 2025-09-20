@@ -1,4 +1,4 @@
-import "../styles/Auth.css";
+import "../styles/auth.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";  // 👈 for navigation
 
