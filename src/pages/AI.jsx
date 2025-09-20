@@ -117,18 +117,26 @@ export default function ChatInterface() {
     setMessages(prev => [...prev, { id: typingId, sender: 'ai', content: "__typing__", timestamp: new Date(), status: 'typing' }]);
 
     try {
-      const response = await fetch("http://localhost:5000/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: finalMsg, conversation: messages })
-      });
+      const BACKEND_URL = "https://mark-backend-1.onrender.com";
+
+const response = await fetch(`${BACKEND_URL}/ask`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    question: finalMsg,
+    conversation: messages.map(m => ({ sender: m.sender, content: m.content }))
+  })
+});
+
       const data = await response.json();
       setMessages(prev => prev.map(msg => msg.id === typingId ? { ...msg, content: data.reply, status: 'read' } : msg));
     } catch (error) {
-      console.error("Error fetching AI reply:", error);
-      setMessages(prev => prev.map(msg => msg.id === typingId ? { ...msg, content: "⚠️ Sorry, something went wrong.", status: 'read' } : msg));
-    }
-  };
+  console.error("Error fetching AI reply:", error);
+  setMessages(prev => prev.map(msg => 
+    msg.id === typingId ? { ...msg, content: `⚠️ Something went wrong: ${error.message}`, status: 'read' } : msg
+  ));
+}
+
 
   return (
     <div className="chat-container">
