@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import Calendar from "./pages/calendar";
 import Project from "./pages/Projects";
 import Auth from "./pages/Auth";
-import Hero from "./pages/Hero";
+import Hero from "./pages/hero";
 import Work from "./pages/Work";
 import Inbox from "./pages/Inbox";
 import Notes from "./pages/Notes";

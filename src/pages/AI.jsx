@@ -149,14 +149,10 @@ export default function ChatInterface() {
 
       {/* Input */}
       <div className="chat-input">
-        <div className={`mic-waveform ${isListening ? "active" : ""}`}>
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
 
-        <button className={`icon-btn mic-btn ${isListening ? "listening" : ""}`} onClick={handleMicClick}>
-          <Mic size={22} stroke="#000000ff" />
+        <button className="icon-btn" onClick={handleAttachClick}>
+          <Paperclip size={22} stroke="#000000ff" />
         </button>
-
         <input
           type="text"
           placeholder="Type a message..."
@@ -164,15 +160,12 @@ export default function ChatInterface() {
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
-
         <button className="send-btn1" onClick={() => handleSendMessage()}>
           <Send size={20} />
         </button>
 
         <input type="file" ref={fileInputRef} style={{ display: "none" }} onChange={handleFileChange} />
-        <button className="icon-btn" onClick={handleAttachClick}>
-          <Paperclip size={22} stroke="#000000ff" />
-        </button>
+
       </div>
     </div>
   );
