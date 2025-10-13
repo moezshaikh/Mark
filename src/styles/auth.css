@@ -459,22 +459,31 @@
     transform: translateY(0);
   }
 }
-.guest-icon {
-  display: inline-block;
-  cursor: pointer;
-  font-size: 2.5rem; /* icon size */
-  padding: 12px;
-  border-radius: 50%;
-  border: 2px solid currentColor; /* uses icon color */
-  background: rgba(255, 255, 255, 0.1); /* subtle overlay for contrast */
-  color: #fff; /* default white */
-  transition: all 0.3s ease;
-  animation: bounce 2s infinite;
-  mix-blend-mode: difference; /* inverts automatically on black/white bg */
+.guest-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 
-.guest-icon:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.guest-btn {
+  background-color: #1f2937; /* dark gray */
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.guest-btn:hover {
+  background-color: #374151; /* slightly lighter gray */
+  transform: scale(1.05);
+}
+
+.guest-btn:active {
+  transform: scale(0.98);
+}
+

@@ -9,7 +9,6 @@ import {
   FolderOpen,
   Search,
   Share2,
-  CircleArrowDown ,
 } from "lucide-react";
 import profile from "../Assets/profile.mp4";
 import whatsapp from "../Assets/whatsapp.mp4";
@@ -142,10 +141,11 @@ export default function MarkAuthPage() {
             </div>
 
             <div className="guest-option">
-  <div className="guest-icon" onClick={handleGuestLogin}>
-    <CircleArrowDown size={40} />
-  </div>
+  <button className="guest-btn" onClick={handleGuestLogin}>
+    Continue as Guest
+  </button>
 </div>
+
           </div>
         </div>
 
@@ -162,12 +162,7 @@ export default function MarkAuthPage() {
     </div>
   </div>
 
-  {/* Scroll Down Arrow */}
-  <div className="scroll-down">
-  <a href="#feature-section" onClick={handleScroll}>
-    <span className="arrow">&#x2193;</span>
-  </a>
-</div>
+  
 
 </div>
 
