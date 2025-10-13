@@ -24,152 +24,151 @@ const Inbox = () => {
 
   // Sample data for different services
   const messageData = {
-    gmail: [
-      {
-        id: 1,
-        sender: 'Sarah Johnson',
-        email: 'sarah.johnson@company.com',
-        subject: 'Project Update - Q4 Marketing Campaign',
-        preview: 'Hi team, I wanted to share the latest updates on our Q4 marketing campaign...',
-        time: '2:30 PM',
-        date: 'Today',
-        unread: true,
-        starred: false,
-        body: `Hi team,
+  gmail: [
+    {
+      id: 1,
+      sender: 'Priya Sharma',
+      email: 'priya.sharma@marketinghub.in',
+      subject: 'Campaign Update - Diwali Promotions',
+      preview: 'Hi team, here are the final updates for our Diwali promotional campaign...',
+      time: '2:30 PM',
+      date: 'Today',
+      unread: true,
+      starred: false,
+      body: `Hi team,
 
-I wanted to share the latest updates on our Q4 marketing campaign. We've made significant progress on the creative assets and have received positive feedback from the stakeholders.
+I wanted to share the latest updates for our Diwali promotional campaign. The creative designs and ad copies have been finalized, and the social media schedule is ready.
 
 Key Updates:
-• Creative concepts approved
-• Budget allocation finalized
-• Timeline confirmed for December launch
+• Creatives approved by client
+• Influencer list finalized
+• Launch date: 28th October
 
-Please review the attached documents and let me know if you have any questions.
+Please review the attached designs and confirm by tomorrow.
 
 Best regards,
-Sarah Johnson
-Marketing Director`
-      },
-      {
-        id: 2,
-        sender: 'Microsoft Teams',
-        email: 'noreply@teams.microsoft.com',
-        subject: 'Meeting Reminder: Weekly Standup',
-        preview: 'Your meeting "Weekly Standup" is starting in 15 minutes...',
-        time: '1:45 PM',
-        date: 'Today',
-        unread: true,
-        starred: true,
-        body: `Meeting Reminder
+Priya Sharma
+Marketing Manager`
+    },
+    {
+      id: 2,
+      sender: 'Google Meet',
+      email: 'noreply@meet.google.com',
+      subject: 'Meeting Reminder: Product Review Call',
+      preview: 'Your meeting "Product Review Call" is starting in 10 minutes...',
+      time: '1:45 PM',
+      date: 'Today',
+      unread: true,
+      starred: true,
+      body: `Meeting Reminder
 
-Your meeting "Weekly Standup" is starting in 15 minutes.
+Your meeting "Product Review Call" is starting in 10 minutes.
 
 Meeting Details:
 • Time: 2:00 PM - 2:30 PM
-• Organizer: John Smith
-• Participants: 8 people
+• Organizer: Raj Patel
+• Participants: 6 members
 
-Join the meeting: https://teams.microsoft.com/join-meeting
+Join here: https://meet.google.com/join-meeting
 
-Best regards,
-Microsoft Teams`
-      },
-      {
-        id: 3,
-        sender: 'David Chen',
-        email: 'david.chen@techcorp.com',
-        subject: 'Code Review Request',
-        preview: 'Could you please review my pull request for the user authentication module?',
-        time: '11:20 AM',
-        date: 'Today',
-        unread: false,
-        starred: false,
-        body: `Hi there,
+Best,
+Google Meet`
+    },
+    {
+      id: 3,
+      sender: 'Aman Verma',
+      email: 'aman.verma@techvista.in',
+      subject: 'Code Review Needed - Payment Gateway Module',
+      preview: 'Hey, could you review my PR for the Razorpay integration?',
+      time: '11:20 AM',
+      date: 'Today',
+      unread: false,
+      starred: false,
+      body: `Hey,
 
-Could you please review my pull request for the user authentication module? I've implemented the OAuth integration and added comprehensive tests.
+Could you please review my pull request for the payment gateway module? I’ve integrated Razorpay and added unit tests.
 
-Changes include:
-• OAuth 2.0 implementation
-• Unit tests for auth flow
+Updates:
+• Razorpay API integration
 • Error handling improvements
-• Security enhancements
+• Transaction logs feature
+• Security patch applied
 
-Link: https://github.com/company/repo/pull/456
+PR Link: https://github.com/techvista/repo/pull/102
 
-Thanks!
-David`
-      }
-    ],
-    whatsapp: [
-      {
-        id: 4,
-        sender: 'Mom',
-        email: '+1 (555) 123-4567',
-        subject: 'Don\'t forget dinner tonight!',
-        preview: 'Hi honey, just reminding you about family dinner at 7 PM...',
-        time: '3:15 PM',
-        date: 'Today',
-        unread: true,
-        starred: false,
-        body: `Hi honey! 👋
+Thanks,
+Aman`
+    }
+  ],
+  whatsapp: [
+    {
+      id: 4,
+      sender: 'Maa',
+      email: '+91 98765 43210',
+      subject: 'Beta, dinner yaad hai na?',
+      preview: 'Beta, don’t forget about dinner tonight! Papa has got sweets...',
+      time: '8:10 PM',
+      date: 'Today',
+      unread: true,
+      starred: false,
+      body: `Beta ❤️
 
-Just reminding you about family dinner tonight at 7 PM. I'm making your favourite Biryani.!
+Don’t forget dinner tonight! I made your favourite Paneer Butter Masala and Papa brought gulab jamuns 🍮
 
-Don't be late! Love you ❤️
+Come home soon!
 
-Mom`
-      },
-      {
-        id: 5,
-        sender: 'Work Group',
-        email: 'Work Team Chat',
-        subject: 'New message in Work Group',
-        preview: 'Alex: The presentation looks great! When do we present?',
-        time: '2:50 PM',
-        date: 'Today',
-        unread: true,
-        starred: true,
-        body: `Work Group Chat
+Love,
+Maa`
+    },
+    {
+      id: 5,
+      sender: 'Project Team',
+      email: 'Team Chat',
+      subject: 'New message in Project Team',
+      preview: 'Riya: Guys, client call at 10 AM tomorrow, please be ready...',
+      time: '7:45 PM',
+      date: 'Today',
+      unread: true,
+      starred: true,
+      body: `Project Team Chat
 
-Alex Thompson: The presentation looks great! When do we present to the client?
+Riya: Guys, client call at 10 AM tomorrow, please be ready with reports.
+Arjun: Got it, will send updates by 9 AM.
+Karan: Presentation slides done, uploading now.
+Riya: Great teamwork everyone! 🙌`
+    }
+  ],
+  outlook: [
+    {
+      id: 6,
+      sender: 'HR Department',
+      email: 'hr@infotechsolutions.in',
+      subject: 'Performance Review Meeting - Reminder',
+      preview: 'This is a reminder for your upcoming annual performance review...',
+      time: '10:00 AM',
+      date: 'Today',
+      unread: false,
+      starred: false,
+      body: `Dear Employee,
 
-Lisa Wong: Tomorrow at 10 AM
-
-Mike Davis: I'll send the final slides tonight
-
-Alex Thompson: Perfect, thanks team! 👍`
-      }
-    ],
-    outlook: [
-      {
-        id: 6,
-        sender: 'HR Department',
-        email: 'hr@company.com',
-        subject: 'Annual Performance Review Reminder',
-        preview: 'This is a friendly reminder that your annual performance review...',
-        time: '9:30 AM',
-        date: 'Today',
-        unread: false,
-        starred: false,
-        body: `Dear Employee,
-
-This is a friendly reminder that your annual performance review is scheduled for next week.
+This is a friendly reminder for your annual performance review meeting scheduled next week.
 
 Please prepare:
-• Self-assessment form
-• Goals for next year
-• Feedback on team processes
+• Your achievements summary
+• Plans for next quarter
+• Team feedback
 
-Meeting scheduled: Next Tuesday, 2:00 PM
-Location: Conference Room A
+Meeting Date: 15th October, 2:00 PM  
+Venue: HR Conference Room  
 
-If you have any questions, please contact HR.
+If you need to reschedule, contact HR.
 
-Best regards,
-HR Department`
-      }
-    ]
-  };
+Warm regards,  
+HR Department  
+Infotech Solutions`
+    }
+  ]
+};
 
   const tabs = [
     { id: 'gmail', name: 'Gmail', color: '#dc2626' },

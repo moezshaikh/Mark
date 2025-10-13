@@ -1,122 +1,286 @@
+// MarkAuthPage.jsx
 import "../styles/auth.css";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  // 👈 for navigation
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  BookMarked,
+  Star,
+  Bookmark,
+  FolderOpen,
+  Search,
+  Share2,
+  CircleArrowDown ,
+} from "lucide-react";
+import profile from "../Assets/profile.mp4";
+import whatsapp from "../Assets/whatsapp.mp4";
+import note from "../Assets/note.mp4";
+import inbox from "../Assets/inbox.mp4";
+import demo from "../Assets/demo.mp4";
 
-const AuthPage = () => {
-  const [isSignup, setIsSignup] = useState(false);
-  const [currentFeature, setCurrentFeature] = useState(0);
-  const [prevFeature, setPrevFeature] = useState(null);
+
+export default function MarkAuthPage() {
+  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    remember: false,
   });
 
   const navigate = useNavigate();
 
-  const features = [
-    { title: "Welcome to Mark", description: "Your intelligent productivity companion designed to streamline your workflow and boost efficiency." },
-    { title: "AI Assistant", description: "Get AI help to optimize workflow. " },
-    { title: "AI Notes", description: "Capture, organize, and enhance your thoughts with intelligent suggestions." },
-    { title: "Smart Calendar", description: "Organize your schedule effortlessly." },
-    { title: "Task Tracking", description: "Track your tasks and projects intelligently." },
-    { title: "Inbox", description: "Unified communication hub with smart filtering." },
-    { title: "Projects", description: "Store and manage your Projects, Skills, and information seamlessly." },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPrevFeature(currentFeature);
-      setCurrentFeature((prev) => (prev + 1) % features.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [currentFeature, features.length]);
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
   };
 
-
-  const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleGuestLogin = () => {
-    navigate("/dashboard"); // 👈 fixed: goes to dashboard
+    navigate("/dashboard");
   };
-
-  // ✅ make sure return is inside the function
-  return (
-    <div className="auth-container">
-      {/* Left Panel - Auth Form */}
-      <div className="auth-panel">
-        <div className="auth-content">
-          <div className="logo-section">
-            <h1 className="logo">m</h1>
-            <p className="tagline">Your intelligent productivity companion</p>
-          </div>
-
-          <div className="form-container">
-            
-
-            <div className="alt-actions">
-              <button onClick={handleGoogleLogin} className="btn-google">
-                Continue with Google
-              </button>
-
-              <div className="divider">
-              <span>or</span>
-            </div>
-
-
-              <button onClick={handleGuestLogin} className="btn-guest">
-                Continue as Guest
-              </button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      {/* Right Panel - Feature Showcase */}
-      <div className="feature-panel">
-        <div className="feature-background">
-          <div className="abstract-shape shape-1"></div>
-          <div className="abstract-shape shape-2"></div>
-          <div className="abstract-shape shape-3"></div>
-        </div>
-
-        <div className="feature-content">
-          <div className="feature-showcase">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={`feature-item 
-                  ${index === currentFeature ? "active" : ""} 
-                  ${index === prevFeature ? "exit" : ""}`}
-              >
-                <div className="feature-card">
-                  <h3 className="feature-title">{feature.title}</h3>
-                  <p className="feature-description">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="feature-indicators">
-            {features.map((_, index) => (
-              <div
-                key={index}
-                className={`indicator ${
-                  index === currentFeature ? "active" : ""
-                }`}
-              ></div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  
+  const handleScroll = (e) => {
+  e.preventDefault(); // prevent default jump
+  const section = document.getElementById("feature-section");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 };
 
-export default AuthPage;
+
+  return (
+    
+    <div className="auth-page">
+      {/* Hero Section */}
+      <section id="auth">
+      <div className="auth-hero">
+        {/* Left Side */}
+        <div className="auth-left">
+          <div className="auth-card">
+            
+            <h2 className="auth-subtitle">
+              {isLogin ? "Welcome Back" : "Get Started"}
+            </h2>
+            <p className="auth-description">
+              {isLogin
+                ? "Log in to access Mark."
+                : "Create an account to start Mark-ing."}
+            </p>
+
+            <div className="auth-form">
+              {!isLogin && (
+                <div className="form-group">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                  />
+                </div>
+              )}
+
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                />
+              </div>
+
+              {isLogin && (
+                <div className="form-remember">
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="remember"
+                      checked={formData.remember}
+                      onChange={handleChange}
+                    />
+                    Remember me
+                  </label>
+                  <button className="forgot-password">Forgot password?</button>
+                </div>
+              )}
+
+              <button onClick={handleSubmit} className="auth-btn">
+                {isLogin ? "Log In" : "Sign Up"}
+              </button>
+            </div>
+
+            <div className="auth-switch">
+              <p>
+                {isLogin
+                  ? "Don't have an account? "
+                  : "Already have an account? "}
+                <button onClick={() => setIsLogin(!isLogin)}>
+                  {isLogin ? "Sign Up" : "Log In"}
+                </button>
+              </p>
+            </div>
+
+            <div className="guest-option">
+  <div className="guest-icon" onClick={handleGuestLogin}>
+    <CircleArrowDown size={40} />
+  </div>
+</div>
+          </div>
+        </div>
+
+        {/* Right Side */}
+<div className="auth-right">
+  <div className="auth-quote">
+    <div className="auth-tagline">
+      <span className="word">Don’t</span>
+      <span className="word">just</span>
+      <span className="word">note</span>
+      <span className="word">it,</span>
+      <strong className="word">Mark</strong>
+      <strong className="word">It.</strong>
+    </div>
+  </div>
+
+  {/* Scroll Down Arrow */}
+  <div className="scroll-down">
+  <a href="#feature-section" onClick={handleScroll}>
+    <span className="arrow">&#x2193;</span>
+  </a>
+</div>
+
+</div>
+
+
+      </div>
+</section>
+      {/* Sections */}
+      <section className="feature-section gray">
+        <div className="feature-container">
+          <section className="feature-section">
+            <div className="feature-video blue">
+              <video className="feature-media" controls autoPlay loop muted>
+                <source src={demo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <div className="feature-text">
+              <h2>See Mark AI in Action</h2>
+              <p>
+                Just type your question, idea, or task whether it's about
+                business, productivity, or creativity and Mark responds
+                instantly with smart, actionable insights.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section className="feature-section white reverse">
+        <div className="feature-container">
+          <div className="feature-image dark">
+            <video className="feature-media" controls autoPlay loop muted>
+              <source src={inbox} type="video/mp4" />
+            </video>
+          </div>
+
+          <div className="feature-text">
+            <h2>Stay Effortlessly Organized</h2>
+<p>
+  With Mark AI, Gmail, Outlook, and WhatsApp come together in one place. Manage messages, schedule tasks, and stay on top of everything effortlessly. Your day, perfectly organized.
+</p>
+
+          </div>
+        </div>
+      </section>
+
+      <section className="feature-section gray">
+        <div className="feature-container">
+          <div className="feature-image dark">
+            <video className="feature-media" controls autoPlay loop muted>
+          <source src={profile} type="video/mp4" />
+            </video>
+
+          </div>
+
+          <div className="feature-text">
+            <h2>Find Anything Instantly</h2>
+            <p>
+              Keep all your professional content from documents and resumes to
+              your skills and work profile  perfectly organized in one secure
+              place.
+               Mark lets you find and share it effortlessly whenever
+              needed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="feature-section white reverse">
+        <div className="feature-container">
+          <div className="feature-image blue">
+            <video className="feature-media" controls autoPlay loop muted>
+        <source src={note} type="video/mp4" />
+      </video>
+          </div>
+
+          <div className="feature-text">
+            <h2>Smart Notes, Smarter Ideas</h2>
+            <p>
+              Capture thoughts, meeting points, or creative ideas instantly.
+              Mark AI helps you organize notes with tags, reminders, and AI
+              summaries, so nothing important ever slips away.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer-cta" id="guest">
+  <h2>Ready to Start Marking?</h2>
+  <p>
+    Join thousands of users who have transformed the way they organize and
+    remember important information.
+  </p>
+
+  {/* Hero link button to jump to #auth */}
+  <a href="#auth">
+    <button>Get Started for Free</button>
+  </a>
+
+  <div className="cta-attribution">
+    —{" "}
+    <a
+      href="https://www.linkedin.com/in/moez-shaikh/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      by Moez Shaikh
+    </a>
+  </div>
+</footer>
+
+    </div>
+  );
+}

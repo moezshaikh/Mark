@@ -1,4 +1,3 @@
-// src/pages/Calendar.jsx
 import React, { useState, useEffect } from "react";
 import { saveEvent, getEvents } from "../utils/calendarStorage";
 import "../styles/calendar.css";
@@ -10,12 +9,23 @@ export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [newEvent, setNewEvent] = useState({ title: "", time: "" });
 
-  useEffect(() => {
-    setEvents(getEvents());
-  }, []);
-
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+
+  useEffect(() => {
+    const loadEvents = () => setEvents(getEvents());
+
+    loadEvents(); // initial load
+
+    // 🔹 Listen for same-tab and other-tab updates
+    window.addEventListener("storage", loadEvents);
+    window.addEventListener("calendarUpdated", loadEvents);
+
+    return () => {
+      window.removeEventListener("storage", loadEvents);
+      window.removeEventListener("calendarUpdated", loadEvents);
+    };
+  }, []);
 
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -26,17 +36,13 @@ export default function Calendar() {
 
   const getEventsForDate = (day) => {
     if (!day) return [];
-    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(
-      day
-    ).padStart(2, "0")}`;
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     return events.filter((ev) => ev.date === dateStr);
   };
 
   const handleDayClick = (day) => {
     if (!day) return;
-    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(
-      day
-    ).padStart(2, "0")}`;
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     setSelectedDate(dateStr);
     setShowPopup(true);
   };
@@ -53,7 +59,6 @@ export default function Calendar() {
     };
     saveEvent(event);
     setEvents(getEvents()); // refresh from storage
-
     setNewEvent({ title: "", time: "" });
     setShowPopup(false);
   };
@@ -69,26 +74,19 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      {/* Page Title */}
       <div className="calendar-page-header">
         <h1 className="calendar-title">Calendar</h1>
       </div>
 
-      {/* Month Navigation */}
       <div className="calendar-header">
         <button onClick={handlePrevMonth}>⬅ Prev</button>
-        <h2>
-          {currentDate.toLocaleString("default", { month: "long" })} {year}
-        </h2>
+        <h2>{currentDate.toLocaleString("default", { month: "long" })} {year}</h2>
         <button onClick={handleNextMonth}>Next ➡</button>
       </div>
 
-      {/* Calendar Grid */}
       <div className="calendar-grid">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-          <div key={day} className="calendar-day-header">
-            {day}
-          </div>
+          <div key={day} className="calendar-day-header">{day}</div>
         ))}
 
         {calendarDays.map((day, idx) => (
@@ -107,9 +105,7 @@ export default function Calendar() {
             {day &&
               getEventsForDate(day).map((ev) => (
                 <div key={ev.id} className="event">
-                  <span>
-                    {ev.title} {ev.time && `@ ${ev.time}`}
-                  </span>
+                  <span>{ev.title} {ev.time && `@ ${ev.time}`}</span>
                   <button
                     className="delete-btn"
                     onClick={(e) => {
@@ -125,7 +121,6 @@ export default function Calendar() {
         ))}
       </div>
 
-      {/* Popup for adding events */}
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup">
@@ -148,9 +143,7 @@ export default function Calendar() {
               />
               <div className="popup-actions">
                 <button type="submit">Save</button>
-                <button type="button" onClick={() => setShowPopup(false)}>
-                  Cancel
-                </button>
+                <button type="button" onClick={() => setShowPopup(false)}>Cancel</button>
               </div>
             </form>
           </div>

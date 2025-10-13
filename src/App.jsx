@@ -11,11 +11,11 @@ import Calendar from "./pages/calendar";
 import Project from "./pages/Projects";
 import Auth from "./pages/Auth";
 import Hero from "./pages/hero";
-import Work from "./pages/Work";
 import Inbox from "./pages/Inbox";
 import Notes from "./pages/Notes";
 import AI from "./pages/AI";
 import Widgets from "./pages/Widgets";
+import Setting from "./pages/setting";
 
 function Layout() {
   const location = useLocation();
@@ -42,9 +42,10 @@ const hideNavAndSidebar = ["/", "/auth"].includes(location.pathname.toLowerCase(
             <Route path="/" element={<Hero />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            
             <Route path="/projects" element={<Project />} />
-            <Route path="/work" element={<Work />} />
             <Route path="/inbox" element={<Inbox />} />
+            <Route path="/setting" element={<Setting />} />
             <Route path="/ai" element={<AI />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/notes" element={<Notes />} />

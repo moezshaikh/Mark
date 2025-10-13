@@ -1,6 +1,6 @@
 import '../styles/Navbar.css';
 import React, { useState, useEffect } from 'react';
-import { Share2, MoreVertical, HelpCircle, Settings, LogOut } from 'lucide-react';
+import { Share2, MoreVertical, HelpCircle, Settings, LogOut,Trash  } from 'lucide-react';
 
 
 const Navbar = () => {
@@ -132,8 +132,8 @@ const Navbar = () => {
               className="dropdown-item danger" 
               onClick={() => handleMenuClick('logout')}
             >
-              <LogOut size={16} />
-              <span>Logout</span>
+              <Trash size={16} />
+              <span>Trash</span>
             </button>
           </div>
         </div>

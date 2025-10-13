@@ -1,6 +1,6 @@
 :root{--bg:#fbfbfb;--panel:#fff;--muted:#9aa3ab;--text:#202428;--accent:#e6e9eb;--shadow:rgba(16,24,40,0.06)}
 *{box-sizing:border-box}
-html,body,#root{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"San Francisco","Helvetica Neue",Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+html,body,#root{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"San Francisco","Helvetica Neue",Inter,Arial,sans-serif;background:var(--bg);color:var(--text);}
 button{font-family:inherit}
 
 code {
@@ -9,8 +9,5 @@ code {
 }
 .no-transition * {
   transition: none !important;
-}
-html {
-  scrollbar-gutter: stable;
 }
 
