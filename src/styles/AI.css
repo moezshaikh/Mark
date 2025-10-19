@@ -14,10 +14,7 @@
   padding: 4px;
   color: #4b5563;
 }
-.chat-messages {
-  height: 400px; /* fixed or max-height */
-  overflow-y: auto;
-}
+
 /* Typing dots animation */
 .typing-dots {
   display: flex;
@@ -112,38 +109,50 @@
   border-bottom-left-radius: 4px;
 }
 
-/* Input */
+/* Chat Input Container */
 .chat-input {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 6px;
-  padding: 15px;
-  border-top: 1px solid #ccc;
-  background: #fff; /* white background */
+  padding: 12px 16px;
+  border-top: 1px solid #333; /* subtle separation */
+  background: #000;            /* black background */
+  gap: 8px;
 }
 
+/* Text Input Field */
 .chat-input input {
-  flex: 1;
-  border: 1px solid #000; /* black border */
-  outline: none;
-  padding: 8px;
-  border-radius: 16px;
-  background: #fff; /* white input */
+  flex: 1;                     /* takes remaining space */
+  max-width: 600px;
+  padding: 10px 16px;
+  border-radius: 24px;         /* smooth rounded */
+  border: 1px solid #555;      /* subtle border */
+  background: #fff;             /* white input */
   font-size: 14px;
-  color: #000; /* black text */
+  color: #000;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.chat-input input::placeholder {
-  color: #555; /* subtle grey for placeholder */
+.chat-input input:focus {
+  border-color: #fff;          /* highlight border on focus */
+  box-shadow: 0 0 4px rgba(255,255,255,0.3);
 }
+
+/* Placeholder */
+.chat-input input::placeholder {
+  color: #888;                 /* subtle grey */
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* Send Button */
 .send-btn1 {
-  background: #000;      /* black background */
-  color: #fff;           /* white icon */
-  border: none;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  width: 44px;           /* bigger size */
-  height: 44px;          /* bigger size */
-  font-size: 16px;       /* increase icon size inside */
+  border: none;
+  background: #fff;             /* white circle */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,24 +161,34 @@
 }
 
 .send-btn1:hover {
-  background: #333;      /* dark grey on hover */
-  transform: scale(1.05); /* subtle pop effect */
+  background: #ddd;             /* light grey hover */
+  transform: scale(1.05);
 }
-.send-btn svg {
-  stroke: #fff !important;  /* force stroke color */
+
+.send-btn1 svg {
+  stroke: #000 !important;      /* black icon */
+  width: 20px;
+  height: 20px;
 }
+
+/* Attach Icon */
 .icon-btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  margin: 0 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 6px;
+  transition: transform 0.2s;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
 }
 
 .icon-btn svg {
-  stroke: #555;          /* Neutral dark grey */
+  stroke: #fff;                 /* white for contrast */
   width: 22px;
   height: 22px;
 }
